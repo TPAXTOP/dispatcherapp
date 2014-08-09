@@ -1,0 +1,9 @@
+<div class="row">
+  <ul class="nav nav-pills">
+    <li ng-repeat="work in workTypes" ng-class="{active:work==selectedWork}">
+        <a href ng-click="select(work)">{{work.get('Name')}}</a>
+    </li>
+  </ul>
+  <div class="separator sep-horizontal sep-h-thick"></div>
+</div>
+

@@ -1,0 +1,38 @@
+<form name="addOrderForm" class="add-form" ng-show="inner.isSelected('form', 1)">
+  <h4>Add order</h4>
+  <fieldset class="form-group">
+    <label for="orderid">Order ID</label>
+    <input ng-model="reviewCtrl.review.orderId" type="text" class="form-control" title="Order ID" id="orderid"/>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="addr">Address</label>
+    <input ng-model="reviewCtrl.review.address" type="text" class="form-control" title="Address" id="addr"/>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="type">Work type</label>
+    <input ng-model="reviewCtrl.review.type" type="text" class="form-control" title="Work type" id="type"/>
+  </fieldset>
+  <fieldset class="form-inline">
+    <input type="button" class="btn btn-default pull-left" value="Close" ng-click="inner.set('form', 0)"/>
+    <input type="submit" class="btn btn-primary pull-right" value="Submit" />
+  </fieldset>
+</form>
+<form name="addWorkerForm" class="add-form" ng-show="inner.isSelected('form', 2)">
+  <h4>Add worker</h4>
+  <fieldset class="form-group">
+    <label for="fname">First name</label>
+    <input ng-model="reviewCtrl.review.fname" type="text" class="form-control" title="First Name" id="fname"/>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="lname">Last name</label>
+    <input ng-model="reviewCtrl.review.lname" type="text" class="form-control" title="Last name" id="lname"/>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="spec">Specialty</label>
+    <input ng-model="reviewCtrl.review.spec" type="text" class="form-control" title="Specialty" id="spec"/>
+  </fieldset>
+  <fieldset class="form-inline">
+    <input type="button" class="btn btn-default pull-left" value="Close" ng-click="inner.set('form', 0)"/>
+    <input type="submit" class="btn btn-primary pull-right" value="Submit" />
+  </fieldset>
+</form>

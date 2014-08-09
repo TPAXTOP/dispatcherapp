@@ -1,0 +1,65 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  padding-right: 0.3em;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus{
+  background-color: #428BCA;
+  color: #FFFFFF;
+}
+
+.separator {
+  background-color: #428BCA;
+}
+
+.sep-horizontal {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.sep-h-thick {
+  height: 3px;
+}
+
+.sep-h-thin {
+  height: 2px;
+}
+#sep-vertical {
+  background-color: #428BCA;
+  width: 2px;
+  height: 20px;
+}
+
+.inline {
+  display: inline-block;
+  float:left;
+}
+
+.inline-table {
+  width: 70%;
+  margin: 0 auto;
+}
+
+#title {
+  margin-top: 5px;
+  margin-bottom: auto;
+}
+
+.add-form {
+  width: 20em;
+  margin-right: 2em;
+}
