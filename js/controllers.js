@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', [])
+angular.module('myApp.controllers', ['ui.bootstrap'])
   .controller('JobsCtrl', ['$scope', 'ParseSDK', function($scope, ParseSDK) {
 
     ParseSDK.getAll('WorkTypes').then(function(results) {
@@ -13,23 +13,23 @@ angular.module('myApp.controllers', [])
       alert('Error: ' + error.code + ' ' + error.message)
     });
 
-    $scope.select = function(work) {
+    $scope.selectWork = function(work) {
       $scope.selectedWork = work;
     };
   }])
   .controller('InnerController', ['$scope', function($scope) {
-    this.selected = {'form': 0, 'table': 1};
+    this.selected = 2;
 
-    this.isSelected = function(component, index) {
-      return this.selected[component] === index;
+    this.isSelected = function(index) {
+      return this.selected === index;
     };
 
-    this.set = function(component, index) {
-      this.selected[component] = index;
+    this.set = function(index) {
+      this.selected = index;
     };
   }])
   .controller('TableController', ['$scope', '$interval', 'ParseSDK', function($scope, $interval, ParseSDK) {
-    var updateOrdersTable = function() {
+    $scope.updateOrdersTable = function() {
       var work = $scope.selectedWork;
       if (work) {
         ParseSDK.getOrders(work).then(function (results) {
@@ -41,9 +41,9 @@ angular.module('myApp.controllers', [])
       }
     };
 
-    $scope.$watch('selectedWork', updateOrdersTable);
+    $scope.$watch('selectedWork', $scope.updateOrdersTable);
 //    $interval(function() {
-//      updateOrdersTable()
+//      $scope.updateOrdersTable()
 //    }, 10000);
 
     ParseSDK.getAll('User').then(function(results) {
@@ -52,5 +52,22 @@ angular.module('myApp.controllers', [])
     }, function(error) {
       alert('Error: ' + error.code + ' ' + error.message)
     });
+  }])
+  .controller('TypeaheadCtrl', ['$scope', 'ParseSDK', function($scope, ParseSDK) {
+    $scope.getStreets = function(str) {
+       return ParseSDK.findStreets(str).then(function(results) {
+         var streets = [];
+         angular.forEach(results, function(item) {
+           item['printable'] = item.get('type') + ' ' + item.get('name') + ', ' + item.get('district') + ' р-н';
+           streets.push(item)
+         });
+         return streets
+       });
+    };
+
+    $scope.selectStreet = function(item) {
+      $scope.selectedStreet = item;
+      console.log(item)
+    }
   }])
 ;

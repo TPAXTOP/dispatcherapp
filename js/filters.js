@@ -3,8 +3,8 @@
 /* Filters */
 
 angular.module('myApp.filters', []).
-  filter('orderFilter', function() {
-    return function(order, job) {
-      return String(text).replace(/\%VERSION\%/mg, version);
+  filter('formatStreet', function() {
+    return function(street, opt) {
+      return street.type + ' ' + street['name'] + ', ' + street['district']
     };
   });

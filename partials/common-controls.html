@@ -1,22 +1,22 @@
 <div class="container">
   <ul class="nav nav-pills col-md-4">
-    <li ng-class="{active:inner.isSelected('form', 1)}">
-      <a href ng-click="inner.set('form', 1)">Add Order</a>
+    <li ng-class="{active:inner.isSelected(0)}">
+      <a href ng-click="inner.set(0)">Add Order</a>
     </li>
-    <li ng-class="{active:inner.isSelected('form', 2)}">
-      <a href ng-click="inner.set('form', 2)">Add Worker</a>
+    <li ng-class="{active:inner.isSelected(1)}">
+      <a href ng-click="inner.set(1)">Add Worker</a>
     </li>
   </ul>
   <h3 id="title" class="col-md-4">{{selectedWork.get('Name')}}</h3>
   <ul class="nav nav-pills col-md-4">
-    <li ng-class="{active:inner.isSelected('table', 1)}">
-      <a href ng-click="inner.set('table', 1)">Orders List</a>
+    <li ng-class="{active:inner.isSelected(2)}">
+      <a href ng-click="inner.set(2)">Orders List</a>
     </li>
-    <li ng-class="{active:inner.isSelected('table', 2)}">
-      <a href ng-click="inner.set('table', 2)">Workers</a>
+    <li ng-class="{active:inner.isSelected(3)}">
+      <a href ng-click="inner.set(3)">Workers</a>
     </li>
-    <li ng-class="{active:inner.isSelected('table', 3)}">
-      <a href ng-click="inner.set('table', 3)">Live Tracking</a>
+    <li ng-class="{active:inner.isSelected(4)}">
+      <a href ng-click="inner.set(4)">Live Tracking</a>
     </li>
   </ul>
 </div>

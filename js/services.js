@@ -19,6 +19,14 @@ angular.module('myApp.services', []).
       var Orders = Parse.Object.extend('Orders');
       var query = new Parse.Query(Orders);
       query.equalTo('workType', workType);
+      query.include('street');
+      return query.find();
+    };
+
+    this.findStreets = function(str) {
+      var Streets = Parse.Object.extend('Streets');
+      var query = new Parse.Query(Streets);
+      query.matches('name', str, 'i');
       return query.find();
     }
   });

@@ -1,23 +1,62 @@
-<form name="addOrderForm" class="add-form" ng-show="inner.isSelected('form', 1)">
-  <h4>Add order</h4>
-  <fieldset class="form-group">
-    <label for="orderid">Order ID</label>
-    <input ng-model="reviewCtrl.review.orderId" type="text" class="form-control" title="Order ID" id="orderid"/>
-  </fieldset>
-  <fieldset class="form-group">
-    <label for="addr">Address</label>
-    <input ng-model="reviewCtrl.review.address" type="text" class="form-control" title="Address" id="addr"/>
-  </fieldset>
-  <fieldset class="form-group">
-    <label for="type">Work type</label>
-    <input ng-model="reviewCtrl.review.type" type="text" class="form-control" title="Work type" id="type"/>
-  </fieldset>
-  <fieldset class="form-inline">
-    <input type="button" class="btn btn-default pull-left" value="Close" ng-click="inner.set('form', 0)"/>
-    <input type="submit" class="btn btn-primary pull-right" value="Submit" />
+<form name="addOrderForm" class="form-horizontal" ng-show="inner.isSelected(0)">
+  <h4 class="text-center">Add order</h4>
+  <fieldset>
+    <div class="form-group">
+      <label for="address" class="control-label col-sm-2">Address</label>
+      <div class="col-sm-3" ng-controller="TypeaheadCtrl">
+        <input type="text" class="form-control" id="address" placeholder="Street" ng-model="street"
+               typeahead="street.printable for street in getStreets($viewValue)" typeahead-min-length="3"
+               autocomplete="off" typeahead-on-select="selectStreet($item)"/>
+
+      </div>
+      <div class="col-sm-1">
+        <input type="text" class="form-control" id="house" placeholder="House"/>
+      </div>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" id="apt" placeholder="Apartments"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phone" class="control-label col-sm-2">Phone</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="phone" placeholder="Phone"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="price" class="control-label col-sm-2">Phone</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="price" placeholder="Price"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="sub" class="control-label col-sm-2">Work subtype</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="sub" placeholder="Work subtype"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="critical" class="control-label col-sm-2">Critical</label>
+      <div class="col-sm-1">
+        <input type="checkbox" class="form-control" id="critical"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="note" class="control-label col-sm-2">Note</label>
+      <div class="col-sm-3">
+        <textarea class="form-control" id="note" placeholder="Additional information (optional)"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-2">
+        <input type="submit" class="btn btn-primary" value="Submit" />
+      </div>
+      <div class="col-sm-2">
+        <input type="button" class="btn btn-default" value="Close" ng-click="inner.set(2)"/>
+      </div>
+    </div>
   </fieldset>
 </form>
-<form name="addWorkerForm" class="add-form" ng-show="inner.isSelected('form', 2)">
+<form name="addWorkerForm" class="add-form" ng-show="inner.isSelected(1)">
   <h4>Add worker</h4>
   <fieldset class="form-group">
     <label for="fname">First name</label>
@@ -32,7 +71,7 @@
     <input ng-model="reviewCtrl.review.spec" type="text" class="form-control" title="Specialty" id="spec"/>
   </fieldset>
   <fieldset class="form-inline">
-    <input type="button" class="btn btn-default pull-left" value="Close" ng-click="inner.set('form', 0)"/>
+    <input type="button" class="btn btn-default pull-left" value="Close" ng-click="inner.set(3)"/>
     <input type="submit" class="btn btn-primary pull-right" value="Submit" />
   </fieldset>
 </form>
