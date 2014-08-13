@@ -6,7 +6,8 @@
       <div class="col-sm-3" ng-controller="TypeaheadCtrl">
         <input type="text" class="form-control" id="address" placeholder="Street" ng-model="street"
                typeahead="street.printable for street in getStreets($viewValue)" typeahead-min-length="3"
-               autocomplete="off" typeahead-on-select="selectStreet($item)"/>
+               autocomplete="off" typeahead-on-select="selectStreet($item)" typeahead-loading="loading"/>
+        <i ng-show="loading" class="glyphicon glyphicon-refresh"></i>
 
       </div>
       <div class="col-sm-1">
