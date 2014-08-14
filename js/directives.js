@@ -25,7 +25,8 @@ angular.module('myApp.directives', []).
   directive('addForm', function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/add-form.html'
+      templateUrl: 'partials/add-form.html',
+      controller: 'AddFormController'
     }
   }).
   directive('mainTable', function(){

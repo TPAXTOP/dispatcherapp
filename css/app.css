@@ -63,3 +63,7 @@
   width: 20em;
   margin-right: 2em;
 }
+
+tr.text-center {
+  display:none;
+}

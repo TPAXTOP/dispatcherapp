@@ -41,7 +41,10 @@ angular.module('myApp.controllers', ['ui.bootstrap'])
       }
     };
 
-    $scope.$watch('selectedWork', $scope.updateOrdersTable);
+    $scope.$watch('selectedWork', function() {
+      $scope.orderSelectedWork = $scope.selectedWork;
+      $scope.updateOrdersTable();
+    });
 //    $interval(function() {
 //      $scope.updateOrdersTable()
 //    }, 10000);
@@ -52,6 +55,22 @@ angular.module('myApp.controllers', ['ui.bootstrap'])
     }, function(error) {
       alert('Error: ' + error.code + ' ' + error.message)
     });
+  }])
+  .controller('AddFormController', ['$scope', 'ParseSDK', function($scope, ParseSDK) {
+    $scope.newOrder = {};
+
+    $scope.orderSubmit = function() {
+      $scope.newOrder.workType = $scope.orderSelectedWork;
+      ParseSDK.saveOrder($scope.newOrder).then(function() {
+        $scope.newOrder = {};
+        $scope.addOrderForm.$setPristine();
+        $scope.$apply();
+        alert('New order has been added successfully!')
+      }, function(error) {
+        alert('Error: ' + error.code + ' ' + error.message)
+      });
+    }
+
   }])
   .controller('TypeaheadCtrl', ['$scope', 'ParseSDK', function($scope, ParseSDK) {
     $scope.getStreets = function(str) {
@@ -66,8 +85,27 @@ angular.module('myApp.controllers', ['ui.bootstrap'])
     };
 
     $scope.selectStreet = function(item) {
-      $scope.selectedStreet = item;
-      console.log(item)
+      $scope.newOrder.street = item;
     }
+  }])
+  .controller('DateTimeCtrl', ['$scope', function($scope) {
+    $scope.today = function() {
+      $scope.newOrder.date = new Date();
+    };
+    $scope.today();
+
+    $scope.dateOptions = {
+      formatYear: 'yy',
+      startingDay: 1
+    };
+    $scope.hstep = 1;
+    $scope.mstep = 15;
+    $scope.ismeridian = false;
+
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.opened = true;
+    };
   }])
 ;

@@ -28,5 +28,23 @@ angular.module('myApp.services', []).
       var query = new Parse.Query(Streets);
       query.matches('name', str, 'i');
       return query.find();
+    };
+
+    this.saveOrder = function(data) {
+      var Order = Parse.Object.extend('Orders');
+      var order = new Order();
+      order.set('street', data.street);
+      order.set('house', data.house);
+      order.set('appartament', data.apartments);
+      order.set('date', data.date);
+      order.set('phone', data.phone);
+      order.set('price', data.price);
+      order.set('workType', data.workType);
+      order.set('workSubtype', data.workSubtype);
+      order.set('date', data.date);
+      order.set('isCritical', data.critical);
+      order.set('note', data.note);
+      order.set('isComplete', false);
+      return order.save()
     }
   });
