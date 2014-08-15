@@ -46,5 +46,21 @@ angular.module('myApp.services', []).
       order.set('note', data.note);
       order.set('isComplete', false);
       return order.save()
+    };
+
+    this.saveUser = function(data) {
+      var User = Parse.Object.extend('User');
+      var user = new User;
+      user.set('username', data.username);
+      user.set('fullName', data.fullname);
+      user.set('email', data.email);
+      user.set('password', data.password);
+      user.set('IPN', data.ipn);
+      user.set('passport_number', data.passportNumber);
+      user.set('passport_issuing_authority', data.issuedBy);
+      user.set('passport_receive_date', data.passportDate);
+      user.set('phone', data.m_phone);
+      user.set('phone_home', data.h_phone);
+      return user.save()
     }
   });

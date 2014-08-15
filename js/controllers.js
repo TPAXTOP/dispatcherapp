@@ -58,6 +58,7 @@ angular.module('myApp.controllers', ['ui.bootstrap'])
   }])
   .controller('AddFormController', ['$scope', 'ParseSDK', function($scope, ParseSDK) {
     $scope.newOrder = {};
+    $scope.newUser = {};
 
     $scope.orderSubmit = function() {
       $scope.newOrder.workType = $scope.orderSelectedWork;
@@ -69,8 +70,18 @@ angular.module('myApp.controllers', ['ui.bootstrap'])
       }, function(error) {
         alert('Error: ' + error.code + ' ' + error.message)
       });
-    }
+    };
 
+    $scope.userSubmit = function() {
+      ParseSDK.saveUser($scope.newUser).then(function() {
+        $scope.newUser = {};
+        $scope.addWorkerForm.$setPristine();
+        $scope.$apply();
+        alert('New worker has been added successfully!')
+      }, function(error) {
+        alert('Error: ' + error.code + ' ' + error.message)
+      })
+    }
   }])
   .controller('TypeaheadCtrl', ['$scope', 'ParseSDK', function($scope, ParseSDK) {
     $scope.getStreets = function(str) {

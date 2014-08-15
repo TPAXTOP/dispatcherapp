@@ -80,22 +80,75 @@
     </div>
   </fieldset>
 </form>
-<form name="addWorkerForm" class="add-form" ng-show="inner.isSelected(1)">
-  <h4>Add worker</h4>
+<form name="addWorkerForm" class="form-horizontal" ng-show="inner.isSelected(1)" ng-submit="userSubmit()">
+  <h4 class="text-center">Add worker</h4>
   <fieldset class="form-group">
-    <label for="fname">First name</label>
-    <input ng-model="reviewCtrl.review.fname" type="text" class="form-control" title="First Name" id="fname"/>
-  </fieldset>
-  <fieldset class="form-group">
-    <label for="lname">Last name</label>
-    <input ng-model="reviewCtrl.review.lname" type="text" class="form-control" title="Last name" id="lname"/>
-  </fieldset>
-  <fieldset class="form-group">
-    <label for="spec">Specialty</label>
-    <input ng-model="reviewCtrl.review.spec" type="text" class="form-control" title="Specialty" id="spec"/>
-  </fieldset>
-  <fieldset class="form-inline">
-    <input type="button" class="btn btn-default pull-left" value="Close" ng-click="inner.set(3)"/>
-    <input type="submit" class="btn btn-primary pull-right" value="Submit" />
+    <div class="form-group">
+      <label for="username" class="control-label col-sm-2">Username</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="username" placeholder="Username" ng-model="newUser.username"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="fullname" class="control-label col-sm-2">Full name</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="fullname" placeholder="Full name" ng-model="newUser.fullname"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email" class="control-label col-sm-2">E-mail</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="email" placeholder="E-mail" ng-model="newUser.email"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password" class="control-label col-sm-2">Password</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="password" placeholder="Password" ng-model="newUser.password"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="ipn" class="control-label col-sm-2">IPN</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="ipn" placeholder="IPN" ng-model="newUser.ipn"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="passport_n" class="control-label col-sm-2">Passport info</label>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" id="passport_n" placeholder="Passport number" ng-model="newUser.passportNumber"/>
+      </div>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" placeholder="Issued by" ng-model="newUser.issuedBy"/>
+      </div>
+      <div class="col-sm-3" ng-controller="DateTimeCtrl">
+        <div class="input-group">
+          <input type="text" id="issuingDate" class="form-control" datepicker-popup ng-model="newUser.passportDate" is-open="opened"
+                 datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="user_phone" class="control-label col-sm-2">Phone</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="user_phone" placeholder="Mobile phone" ng-model="newUser.m_phone"/>
+      </div>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" placeholder="Home phone" ng-model="newUser.h_phone"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-2">
+        <input type="submit" class="btn btn-primary" value="Submit"/>
+      </div>
+      <div class="col-sm-2">
+        <input type="button" class="btn btn-default" value="Close" ng-click="inner.set(2)"/>
+      </div>
+    </div>
   </fieldset>
 </form>
