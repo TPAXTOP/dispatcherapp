@@ -6,15 +6,16 @@
       <div class="col-sm-3" ng-controller="TypeaheadCtrl">
         <input type="text" class="form-control" id="address" placeholder="Street" ng-model="newOrder.street"
                typeahead="street.printable for street in getStreets($viewValue)" typeahead-min-length="3"
-               autocomplete="off" typeahead-on-select="selectStreet($item)" typeahead-loading="loading"/>
+               autocomplete="off" typeahead-on-select="selectStreet($item)" typeahead-loading="loading" required/>
         <i ng-show="loading" class="glyphicon glyphicon-refresh"></i>
 
       </div>
       <div class="col-sm-1">
-        <input type="text" class="form-control" id="house" placeholder="House" ng-model="newOrder.house"/>
+        <input type="text" class="form-control" id="house" placeholder="House" ng-model="newOrder.house" required/>
       </div>
       <div class="col-sm-2">
-        <input type="text" class="form-control" id="apt" placeholder="Apartments" ng-model="newOrder.apartments"/>
+        <input type="text" class="form-control" id="apt"
+               placeholder="Apartments" ng-model="newOrder.apartments" required/>
       </div>
     </div>
     <div class="form-group">
@@ -48,13 +49,14 @@
     <div class="form-group">
       <label for="phone" class="control-label col-sm-2">Phone</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" id="phone" placeholder="Phone" ng-model="newOrder.phone"/>
+        <input type="tel" class="form-control" id="phone" placeholder="Phone" ng-model="newOrder.phone" required/>
       </div>
     </div>
     <div class="form-group">
       <label for="price" class="control-label col-sm-2">Price</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" id="price" placeholder="Price" ng-model="newOrder.price"/>
+        <input type="number" class="form-control" id="price" placeholder="Price" ng-model="newOrder.price"
+               min="0" step="0.01" value="0.00" required/>
       </div>
     </div>
     <div class="form-group">
@@ -86,19 +88,19 @@
     <div class="form-group">
       <label for="username" class="control-label col-sm-2">Username</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" id="username" placeholder="Username" ng-model="newUser.username"/>
+        <input type="text" class="form-control" id="username" placeholder="Username" ng-model="newUser.username" required/>
       </div>
     </div>
     <div class="form-group">
       <label for="fullname" class="control-label col-sm-2">Full name</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" id="fullname" placeholder="Full name" ng-model="newUser.fullname"/>
+        <input type="text" class="form-control" id="fullname" placeholder="Full name" ng-model="newUser.fullname" required/>
       </div>
     </div>
     <div class="form-group">
       <label for="email" class="control-label col-sm-2">E-mail</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" id="email" placeholder="E-mail" ng-model="newUser.email"/>
+        <input type="email" class="form-control" id="email" placeholder="E-mail" ng-model="newUser.email"/>
       </div>
     </div>
     <div class="form-group">
@@ -136,10 +138,10 @@
     <div class="form-group">
       <label for="user_phone" class="control-label col-sm-2">Phone</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" id="user_phone" placeholder="Mobile phone" ng-model="newUser.m_phone"/>
+        <input type="tel" class="form-control" id="user_phone" placeholder="Mobile phone" ng-model="newUser.m_phone"/>
       </div>
       <div class="col-sm-3">
-        <input type="text" class="form-control" placeholder="Home phone" ng-model="newUser.h_phone"/>
+        <input type="tel" class="form-control" placeholder="Home phone" ng-model="newUser.h_phone"/>
       </div>
     </div>
     <div class="form-group">

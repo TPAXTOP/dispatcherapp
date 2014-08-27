@@ -22,6 +22,11 @@
   color: #FFFFFF;
 }
 
+#live.active > a {
+  background-color: #ca0411;
+  color: #FFFFFF;
+}
+
 .separator {
   background-color: #428BCA;
 }

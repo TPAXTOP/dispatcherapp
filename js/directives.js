@@ -3,6 +3,9 @@
 /* Directives */
 
 
+var NUMBER_REGEXP = /^\-?\d+((\.|\,)\d+)?$/;
+var PHONE_REGEXP = /^(8-?|\+?7-?)?(\(?\d{3}\)?)-?(\d-?){6}\d$/;
+
 angular.module('myApp.directives', []).
   directive('jobTabs', function() {
     return {

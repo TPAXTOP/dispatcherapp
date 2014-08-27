@@ -13,10 +13,32 @@
   <link rel="stylesheet" href="css/app.css"/>
 </head>
 <body>
-  <div class="container" ng-controller="JobsCtrl">
+  <div class="container" ng-controller="InitCtrl">
     <h3>Dispatcher Site</h3>
     <job-tabs></job-tabs>
-
+    <div class="row" ng-hide="ctrl">
+      <form name="loginForm" class="form-horizontal" ng-submit="ctrlLogin()">
+        <fieldset class="form-group">
+          <div class="form-group">
+            <label for="login" class="control-label col-sm-2">Login</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" id="login" placeholder="Login" ng-model="lgn.username" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pass" class="control-label col-sm-2">Password</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" id="pass" placeholder="Password" ng-model="lgn.password" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-2">
+              <input type="submit" class="btn btn-primary" value="Submit"/>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
 
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

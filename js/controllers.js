@@ -3,21 +3,43 @@
 /* Controllers */
 
 angular.module('myApp.controllers', ['ui.bootstrap'])
-  .controller('JobsCtrl', ['$scope', 'ParseSDK', function($scope, ParseSDK) {
+  .controller('InitCtrl', ['$scope', 'ParseSDK', function($scope, ParseSDK) {
+    $scope.lgn = {};
+    $scope.ctrl = undefined;
+    $scope.ctrlLogin = function() {
+      ParseSDK.getCtrl($scope.lgn).then(function(result) {
+        if (result) {
+          $scope.ctrl = result;
+          ParseSDK.getWorkTypes(result.get("workTypes")).then(function(results) {
+            $scope.workTypes = results;
+            $scope.selectedWork = results[0];
+            $scope.$apply();
+          }, function(error) {
+            alert('Error: ' + error.code + ' ' + error.message)
+          });
+        } else {
+          alert('Incorrect login credentials')
+        }
+      }, function(error) {
+        alert('Error: ' + error.code + ' ' + error.message)
+      })
+    };
 
-    ParseSDK.getAll('WorkTypes').then(function(results) {
-      $scope.workTypes = results;
-      $scope.selectedWork = results[0];
-      $scope.$apply();
-    }, function(error) {
-      alert('Error: ' + error.code + ' ' + error.message)
-    });
+
+//    ParseSDK.getWorkTypes().then(function(results) {
+//      $scope.workTypes = results;
+//      $scope.selectedWork = results[0];
+//      $scope.$apply();
+//    }, function(error) {
+//      alert('Error: ' + error.code + ' ' + error.message)
+//    });
 
     $scope.selectWork = function(work) {
       $scope.selectedWork = work;
     };
   }])
   .controller('InnerController', ['$scope', function($scope) {
+    $scope.liveUpdate = false;
     this.selected = 2;
 
     this.isSelected = function(index) {
@@ -27,6 +49,11 @@ angular.module('myApp.controllers', ['ui.bootstrap'])
     this.set = function(index) {
       this.selected = index;
     };
+
+    this.toggleUpdate = function() {
+      $scope.liveUpdate = !$scope.liveUpdate;
+    };
+
   }])
   .controller('TableController', ['$scope', '$interval', 'ParseSDK', function($scope, $interval, ParseSDK) {
     $scope.updateOrdersTable = function() {
@@ -45,11 +72,22 @@ angular.module('myApp.controllers', ['ui.bootstrap'])
       $scope.orderSelectedWork = $scope.selectedWork;
       $scope.updateOrdersTable();
     });
-//    $interval(function() {
-//      $scope.updateOrdersTable()
-//    }, 10000);
 
-    ParseSDK.getAll('User').then(function(results) {
+    var stopUpdate;
+    $scope.$watch('liveUpdate', function() {
+      if ($scope.liveUpdate) {
+        stopUpdate = $interval(function() {
+          $scope.updateOrdersTable()
+        }, 10000);
+      } else {
+        if (angular.isDefined(stopUpdate)) {
+          $interval.cancel(stopUpdate);
+          stopUpdate = undefined;
+        }
+      }
+    });
+
+    ParseSDK.getUsers().then(function(results) {
       $scope.users = results;
       $scope.$apply();
     }, function(error) {
@@ -62,6 +100,7 @@ angular.module('myApp.controllers', ['ui.bootstrap'])
 
     $scope.orderSubmit = function() {
       $scope.newOrder.workType = $scope.orderSelectedWork;
+      $scope.newOrder.controllerId = $scope.ctrl;
       ParseSDK.saveOrder($scope.newOrder).then(function() {
         $scope.newOrder = {};
         $scope.addOrderForm.$setPristine();
@@ -73,6 +112,7 @@ angular.module('myApp.controllers', ['ui.bootstrap'])
     };
 
     $scope.userSubmit = function() {
+      $scope.newUser.controllerId = $scope.ctrl;
       ParseSDK.saveUser($scope.newUser).then(function() {
         $scope.newUser = {};
         $scope.addWorkerForm.$setPristine();

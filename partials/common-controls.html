@@ -15,8 +15,8 @@
     <li ng-class="{active:inner.isSelected(3)}">
       <a href ng-click="inner.set(3)">Workers</a>
     </li>
-    <li ng-class="{active:inner.isSelected(4)}">
-      <a href ng-click="inner.set(4)">Live Tracking</a>
+    <li id="live" ng-class="{active:liveUpdate}">
+      <a href ng-click="inner.toggleUpdate()">Live Tracking</a>
     </li>
   </ul>
 </div>
